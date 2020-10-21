@@ -1,0 +1,15 @@
+%h1 Register
+%p Find me in app/views/users/new.html.haml
+
+= notice
+
+.container
+  .jumbotron
+    = simple_form_for @user do |f|
+      = f.input :username 
+      = f.input :password
+      = f.input :password_confirmation
+      = f.button :submit, 'Register'
+
+
+      %button.btn.btn-dark= link_to("Home", "/")

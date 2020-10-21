@@ -3,8 +3,13 @@
 
 = notice
 
-= simple_form_for @contact do |f|
-  = f.input :name 
-  = f.input :email 
-  = f.input :message  
-  = f.button :submit, 'Send message'
+.container
+  .jumbotron
+    = simple_form_for @contact do |f|
+      = f.input :name 
+      = f.input :email 
+      = f.input :message  
+      = f.button :submit, 'Send message'
+
+
+      %button.btn.btn-dark= link_to("Home", "/")

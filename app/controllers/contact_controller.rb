@@ -6,10 +6,16 @@ class ContactController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    @contact.save
+
+    #testing purposes will be changed
+    #checks against 'contact' model validations
+    if (@contact.save)
+      redirect_to contact_url, notice: 'Message has been successfully sent'
+    end
+   
 
     
-    redirect_to contact_url, notice: 'Message has been successfully sent'
+    
     
   end
 
