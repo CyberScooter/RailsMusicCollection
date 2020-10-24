@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="jumbotron">
+
+    <h1> Contact </h1>
+
+    <div class="errorMessage" ><%= notice %></div>
+
+    <%= simple_form_for @contact do |f| %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+      <%= f.input :message %> 
+      <%= f.button :submit, 'Send message', class:"btn btn-default btn-light" %>
+     
+    <% end %>
+
+      <Button id="Home" class="btn btn-default btn-light"> <%= link_to("Home", "/") %> </Button>
+  </div>
+</div>

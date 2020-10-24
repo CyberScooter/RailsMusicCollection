@@ -1,0 +1,23 @@
+
+
+
+
+<div class="container">
+  <div class="jumbotron">
+  
+    <h2> Register </h2>
+
+    <div class="errorMessage" ><%= notice %></div>
+
+
+    <%= simple_form_for @user do |f| %> 
+      <%= f.input :username %> 
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.button :submit, 'Register' %>
+
+    <% end %>
+
+      <Button id="Home" class="btn btn-default btn-light"> <%= link_to("Home", "/") %> </Button>
+  </div>
+</div>

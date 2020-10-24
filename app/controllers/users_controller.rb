@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  #used to create a new account for a user
-  #still needs to be completed, session will be made one successfully registered
+
   def new
     @user = User.new
   end
@@ -8,13 +7,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    #testing purposes will be changed
-    #checks against 'contact' model validations
-    if(user_params[:password] == user_params[:password_confirmation])
-      if (@user.save)
-        redirect_to users_url, notice: 'User has been successfully registered'
+    
+    if current_user
+      redirect_to root_url, notice: 'Session already active'
+    elsif !User.find_by(username: user_params["username"])
+      if user_params[:password] == user_params[:password_confirmation]
+        if @user.save
+          session[:user_id] = @user.id
+          redirect_to root_url, notice: 'User has been successfully registered'
+        else
+          redirect_to users_url, notice: @user.error.full_messages
+        end
+      elsif
+
+        redirect_to users_url, notice: 'Username already exists'
       end
     else
+      
       redirect_to users_url, notice: 'Password does not match'
     end
 

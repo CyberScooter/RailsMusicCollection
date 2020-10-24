@@ -1,19 +1,21 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   #contact form routes
   get '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'
 
   #create new user routes
-
-
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
-  
+
+  #login
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   
 
   #index route
   root 'home#home'
-  
+
   #map contacts to contact, restricts to create and new
   resources :contacts, :path => "contact", only: [:create,:new]
 

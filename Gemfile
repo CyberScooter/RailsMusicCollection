@@ -56,11 +56,10 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-gem 'haml-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'modernizr-rails'
 gem 'simple_form'
-gem 'bcrypt'
+gem 'bcrypt', '~> 3.1.16'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

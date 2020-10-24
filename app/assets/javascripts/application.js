@@ -15,3 +15,21 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(window).scroll(function(){
+	if($(window).scrollTop() <= 40){
+		//navbar.removeClass('navbar-scroll');
+	} else if($(window).scrollTop() > 40){
+		//navbar.addClass('navbar-scroll');
+	} 
+	
+});
+
+$(document).ready( () => {
+	var pathname = window.location.pathname
+	if(pathname == "/"){
+		$("#homeLink").last().addClass("active");
+
+	}
+
+})
