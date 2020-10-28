@@ -5,14 +5,20 @@
 <div class="container">
   <div class="jumbotron">
 
-    <h3> Login </h3>
+    <% if current_user %>
+      <h3> Session already active </h3>
 
-    <div class="errorMessage" ><%= notice %></div>
+    <% else %>
 
-    <%= simple_form_for login_path do |f| %>
-      <%= f.input :name %> 
-      <%= f.input :password %> 
-      <%= f.button :submit, 'Login' %>
+      <h3> Login </h3>
+
+      <div class="errorMessage" ><%= notice %></div>
+
+      <%= simple_form_for login_path do |f| %>
+        <%= f.input :name %> 
+        <%= f.input :password %> 
+        <%= f.button :submit, 'Login', :class => "btn btn-default btn-light"  %>
+      <% end %>
     <% end %>
 
     <Button id="Home" class="btn btn-default btn-light"> <%= link_to("Home", "/") %> </Button>

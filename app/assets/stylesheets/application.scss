@@ -21,3 +21,36 @@
      color: red;
      font-weight: bold;
  }
+
+ #successMessage{
+     color: green;
+     font-weight: bold;
+ }
+
+ .navbar-scroll {
+	background-color: rgba(22, 22, 22, 1);
+	padding-bottom: 0	;
+	box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+	transition-duration: 0.6s;
+	margin: 0 300px;
+}
+
+.navbar {
+    transition-duration: 0.6s;
+}
+
+body { 
+    padding-top: 70px; 
+}
+
+@media screen and (max-width: 767px){
+    // padding top increases when in mobile view as navbar tiles
+    body{
+        padding-top: 250px;
+    }
+    .navbar-scroll{
+        pointer-events: none;
+        margin: 0 50px;
+        opacity: 0;
+    }
+}
