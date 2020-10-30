@@ -4,6 +4,8 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
+    #album id going to be useful for selecting songs
+    puts params[:id]
     @songs = Song.all
   end
 
@@ -71,4 +73,6 @@ class SongsController < ApplicationController
     def song_params
       params.require(:song).permit(:name, :artist, :year)
     end
+
+
 end

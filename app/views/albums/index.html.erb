@@ -27,7 +27,8 @@
               <h3><td><%= album.name %></td></h3>
               <td><%= album.description %></td>
               <p>
-                <%= link_to 'View', "/albums/"+album.id.to_s+"/songs", class: "btn btn-primary" %>
+                <!-- maybe use post form to submit id to songs controller-->
+                <%= link_to 'View', songs_path(album), class: "btn btn-primary" %>
                 <%= link_to 'Edit', edit_album_path(album),class:"btn btn-default" %>
                 <%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
               </p>
