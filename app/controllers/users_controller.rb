@@ -17,13 +17,13 @@ class UsersController < ApplicationController
         else
           redirect_to users_url, notice: @user.error.full_messages
         end
-      elsif
-
-        redirect_to users_url, notice: 'Username already exists'
+      else
+        redirect_to users_url, notice: 'Password does not match'
+        
       end
     else
+      redirect_to users_url, notice: 'Username already exists'
       
-      redirect_to users_url, notice: 'Password does not match'
     end
 
 

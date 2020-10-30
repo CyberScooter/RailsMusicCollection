@@ -10,12 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_224727) do
+ActiveRecord::Schema.define(version: 2020_10_30_183559) do
+
+  create_table "albums", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "albums_users", force: :cascade do |t|
+    t.integer "album_id"
+    t.integer "user_id"
+    t.index ["album_id"], name: "index_albums_users_on_album_id"
+    t.index ["user_id"], name: "index_albums_users_on_user_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.text "message"
+    t.string "message"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "name"
+    t.string "artist"
+    t.date "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
