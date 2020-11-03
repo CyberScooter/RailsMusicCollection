@@ -5,8 +5,9 @@ class SongsController < ApplicationController
   # GET /songs.json
   def index
     #album id going to be useful for selecting songs
-    puts params[:id]
-    @songs = Song.all
+    album = Album.find_by(id: params[:album_id])
+
+    @songs = album.songs.all
   end
 
   # GET /songs/1
@@ -16,7 +17,8 @@ class SongsController < ApplicationController
 
   # GET /songs/new
   def new
-    @song = Song.new
+    album = Album.find_by(id: params[:album_id])
+    @song = album.songs.new
   end
 
   # GET /songs/1/edit
@@ -26,25 +28,34 @@ class SongsController < ApplicationController
   # POST /songs
   # POST /songs.json
   def create
-    @song = Song.new(song_params)
+    #checks if logged in owns the album, if so songs can be added
+    if(current_user.albums.find_by(id: params[:album_id]))
+      album = Album.find_by(id: params[:album_id])
 
-    respond_to do |format|
-      if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render :show, status: :created, location: @song }
-      else
-        format.html { render :new }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+      @song = album.songs.create(song_params)
+
+      respond_to do |format|
+        if @song.save
+          format.html { redirect_to songs_url, notice: 'Song was successfully created.' }
+          format.json { render :show, status: :created, location: @song }
+        else
+          format.html { render :new }
+          format.json { render json: @song.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to new_song_url, notice: 'Invalid operation, logged in as wrong user'
     end
   end
 
   # PATCH/PUT /songs/1
   # PATCH/PUT /songs/1.json
   def update
+    #song id
+
     respond_to do |format|
       if @song.update(song_params)
-        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.html { redirect_to songs_url, notice: 'Song was successfully updated.' }
         format.json { render :show, status: :ok, location: @song }
       else
         format.html { render :edit }
@@ -56,10 +67,13 @@ class SongsController < ApplicationController
   # DELETE /songs/1
   # DELETE /songs/1.json
   def destroy
-    @song.destroy
-    respond_to do |format|
-      format.html { redirect_to songs_url, notice: 'Song was successfully destroyed.' }
-      format.json { head :no_content }
+    #if song belongs to current user logged in
+    if(current_user.albums.find(@song.albums.ids))
+      @song.destroy
+      respond_to do |format|
+        format.html { redirect_to albums_url, notice: 'Song was successfully deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -21,8 +21,6 @@ class AlbumsController < ApplicationController
   def edit
   end
 
-  # POST /albums
-  # POST /albums.json
   def create
     @album = current_user.albums.create(album_params)
 
@@ -38,8 +36,6 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /albums/1
-  # PATCH/PUT /albums/1.json
   def update
     #checks if user updating the album owns the album so not any registered user can update it
     if(current_user.albums.find_by(id: @album.users))
@@ -59,7 +55,7 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1.json
   def destroy
     #checks if user deleting the album owns the album so not any registered user can delete it
-    if(current_user.albums.find_by(id: @album.users))
+    if(current_user.albums.find(@album.id))
       @album.destroy
       respond_to do |format|
         format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }

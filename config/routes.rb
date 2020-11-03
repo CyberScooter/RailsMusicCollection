@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   root 'home#home'
 
 
-  resources :songs, :path => "/albums/:id/songs";
-
+  resources :songs, :path => "/albums/:album_id/songs";
 
   #map contacts to contact, restricts to create and new
   resources :contacts, :path => "contact", only: [:create,:new]
