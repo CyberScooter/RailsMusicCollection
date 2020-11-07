@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_125052) do
+ActiveRecord::Schema.define(version: 2020_11_07_153825) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2020_10_31_125052) do
     t.string "name"
     t.string "email"
     t.string "message"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.integer "album_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_favourites_on_album_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "songs", force: :cascade do |t|

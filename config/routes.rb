@@ -1,5 +1,6 @@
 Rails.application.routes.draw do  
   resources :albums
+  resources :favourites
   #contact form routes
   get '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'
@@ -17,7 +18,12 @@ Rails.application.routes.draw do
   root 'home#home'
 
 
+  get '/favourites', to: 'favourites#index'
+  post '/favourites', to: 'favourites#create'
+
   resources :songs, :path => "/albums/:album_id/songs";
+
+
 
   #map contacts to contact, restricts to create and new
   resources :contacts, :path => "contact", only: [:create,:new]
