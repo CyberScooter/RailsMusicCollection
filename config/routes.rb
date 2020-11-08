@@ -21,14 +21,14 @@ Rails.application.routes.draw do
   get '/favourites', to: 'favourites#index'
   post '/favourites', to: 'favourites#create'
 
+
+  #songs to be nested ontop of albums so songs is after albums in url
   resources :songs, :path => "/albums/:album_id/songs";
-
-
 
   #map contacts to contact, restricts to create and new
   resources :contacts, :path => "contact", only: [:create,:new]
 
-  #maps user path to register allowing the user of /register routes above, restricts to create and new
+  #maps user path to "register" allowing the user of /register routes above, restricts to create and new
   resources :users, :path => "register", only: [:create,:new] 
 
   

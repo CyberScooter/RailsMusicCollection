@@ -24,7 +24,9 @@
         <ul class="nav navbar-nav">
           <li id="homeLink"><a href="/">Home </a></li>
           <li><a href="<%= albums_path %>">Albums</a></li>
+          <% if current_user %>
           <li><a href="<%= favourites_path%>">Favourites </a></li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if !current_user  %>

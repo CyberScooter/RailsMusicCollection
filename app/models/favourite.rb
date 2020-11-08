@@ -1,4 +1,6 @@
 class Favourite < ApplicationRecord
-  belongs_to :album
-  belongs_to :user
+  self.table_name = "favourites"
+  belongs_to :album, required: false
+  belongs_to :user, required: false
+
 end

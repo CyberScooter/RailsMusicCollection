@@ -4,22 +4,18 @@
   
   <div class="jumbotron">
   <p id="notice"><%= notice %></p>
-  <h3>Albums</h3>
 
-  <div class="input-group">
-
-    <input type="text" class="form-control" placeholder="Search for user">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Search</button>
-    </span>
-  </div><!-- /input-group -->
 
   <% if current_user %>
 
+  <% if @album.empty? %>
+  <h3> Favourites is currently empty, go into albums and favourite! </h3>
+  <% else %>
+  <h3>Favourites:</h3>
   <br>
 
       <div class="row">
-      <% @albums.each do |album| %>
+      <% @album.each do |album| %>
 
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
@@ -30,6 +26,7 @@
               <p>
                 <!-- maybe use post form to submit id to songs controller-->
                 <%= link_to 'View', songs_path(album), class: "btn btn-primary" %>
+                <%= link_to 'Remove', "/favourites/"+album.id.to_s, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
 
               </p>
             </div>
@@ -38,12 +35,11 @@
 
       <% end %>
       </div>
+  <% end %>
 
-
-  <%= link_to 'New Album', new_album_path,class:"btn btn-default" %>
 
   <% else %>
-  <h4> Login to add new album </h4>
+  <h4> Login to view favourite albums </h4>
   <% end %>
   </div>
 </div>
