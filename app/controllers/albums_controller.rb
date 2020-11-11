@@ -12,13 +12,12 @@ class AlbumsController < ApplicationController
     
   end
 
+  def edit
+  end
+
   # GET /albums/new
   def new
     @album = current_user.albums.new
-  end
-
-  # GET /albums/1/edit
-  def edit
   end
 
   def create
@@ -38,7 +37,7 @@ class AlbumsController < ApplicationController
 
   def update
     #checks if user updating the album owns the album so not any registered user can update it
-    if(current_user.albums.find_by(id: @album.users))
+    if(current_user.albums.find(@album.id))
       respond_to do |format|
         if @album.update(album_params)
           format.html { redirect_to albums_url, notice: 'Album was successfully updated.' }
@@ -56,6 +55,18 @@ class AlbumsController < ApplicationController
   def destroy
     #checks if user deleting the album owns the album so not any registered user can delete it
     if(current_user.albums.find(@album.id))
+      @favourite = Favourite.find_by(album_id: @album.id)
+
+      #deletes songs from songs table for the given album id
+      @song = Song.joins(:albums).select('songs.id').where('albums.id' => @album.id)
+      @song.destroy_all
+
+      #deletes album reference in favourites before deleting the album 
+      if @favourite
+        @favourite.destroy
+      end
+      
+      #deletes album from the table
       @album.destroy
       respond_to do |format|
         format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }

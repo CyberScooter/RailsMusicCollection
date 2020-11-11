@@ -14,7 +14,6 @@ class AlbumsTest < ApplicationSystemTestCase
     visit albums_url
     click_on "New Album"
 
-    fill_in "String", with: @album.String
     fill_in "Description", with: @album.description
     fill_in "Name", with: @album.name
     click_on "Create Album"
@@ -27,7 +26,6 @@ class AlbumsTest < ApplicationSystemTestCase
     visit albums_url
     click_on "Edit", match: :first
 
-    fill_in "String", with: @album.String
     fill_in "Description", with: @album.description
     fill_in "Name", with: @album.name
     click_on "Update Album"

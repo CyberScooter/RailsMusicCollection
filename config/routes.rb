@@ -1,6 +1,7 @@
 Rails.application.routes.draw do  
-  resources :albums
-  resources :favourites
+  #index route
+  root 'home#home'
+  
   #contact form routes
   get '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'
@@ -14,16 +15,16 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-  #index route
-  root 'home#home'
 
+  resources :favourites, only: [:index, :create, :destroy]
 
   get '/favourites', to: 'favourites#index'
   post '/favourites', to: 'favourites#create'
 
+  resources :albums
 
   #songs to be nested ontop of albums so songs is after albums in url
-  resources :songs, :path => "/albums/:album_id/songs";
+  resources :songs, :path => "/albums/:album_id/songs", :except => [:show, :edit, :update]
 
   #map contacts to contact, restricts to create and new
   resources :contacts, :path => "contact", only: [:create,:new]

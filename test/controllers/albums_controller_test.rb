@@ -17,7 +17,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create album" do
     assert_difference('Album.count') do
-      post albums_url, params: { album: { String: @album.String, description: @album.description, name: @album.name } }
+      post albums_url, params: { album: { description: @album.description, name: @album.name } }
     end
 
     assert_redirected_to album_url(Album.last)
@@ -34,7 +34,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update album" do
-    patch album_url(@album), params: { album: { String: @album.String, description: @album.description, name: @album.name } }
+    patch album_url(@album), params: { album: { description: @album.description, name: @album.name } }
     assert_redirected_to album_url(@album)
   end
 

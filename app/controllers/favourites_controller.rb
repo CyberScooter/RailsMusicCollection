@@ -2,6 +2,7 @@ class FavouritesController < ApplicationController
     #blocks access to albums manipulatin if not logged in
     before_action :authorized, only: [:create, :index, :destroy]
     def index
+      #selects all albums that the current user logged in has favourited
       @album = Album.where(:id => Favourite.select(:album_id).where(:user_id => current_user.id))
     end
 

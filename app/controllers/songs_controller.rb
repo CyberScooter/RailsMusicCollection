@@ -10,19 +10,10 @@ class SongsController < ApplicationController
     @songs = album.songs.all
   end
 
-  # GET /songs/1
-  # GET /songs/1.json
-  def show
-  end
-
   # GET /songs/new
   def new
     album = Album.find_by(id: params[:album_id])
     @song = album.songs.new
-  end
-
-  # GET /songs/1/edit
-  def edit
   end
 
   # POST /songs
@@ -45,22 +36,6 @@ class SongsController < ApplicationController
       end
     else
       redirect_to new_song_url, notice: 'Invalid operation, logged in as wrong user'
-    end
-  end
-
-  # PATCH/PUT /songs/1
-  # PATCH/PUT /songs/1.json
-  def update
-    #song id
-
-    respond_to do |format|
-      if @song.update(song_params)
-        format.html { redirect_to songs_url, notice: 'Song was successfully updated.' }
-        format.json { render :show, status: :ok, location: @song }
-      else
-        format.html { render :edit }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
-      end
     end
   end
 
