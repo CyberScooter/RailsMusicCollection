@@ -1,4 +1,29 @@
 one:
   id: 1
-  album_id: 3
+  album_id: 1
+  song_id: 1
+
+two:
+  id: 2
+  album_id: 1
+  song_id: 2
+
+three:
+  id: 3
+  album_id: 1
+  song_id: 3
+
+four:
+  id: 4
+  album_id: 2
+  song_id: 4
+
+five:
+  id: 5
+  album_id: 2
   song_id: 5
+
+six:
+  id: 6
+  album_id: 2
+  song_id: 6

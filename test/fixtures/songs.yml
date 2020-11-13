@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  artist: MyString
-  year: 2020-10-30
+  id: 1
+  name: Pop Song 1
+  artist: Pop Artist 1
+  year: 2015-05-05
 
 two:
-  name: MyString
-  artist: MyString
-  year: 2020-10-30
+  id: 2
+  name: Pop Song 2
+  artist: Pop Artist 2
+  year: 2013-01-23
+
+three:
+  id: 3
+  name: Pop Song 3
+  artist: Pop Artist 3
+  year: 2012-05-05
+
+four:
+  id: 4
+  name: Classical Song 1
+  artist: Classical Artist 1
+  year: 2000-03-05
+
+
+five:
+  id: 5
+  name: Classical Song 2
+  artist: Classical Artist 2
+  year: 1995-01-05
+
+
+six:
+  id: 6
+  name: Classical Song 3
+  artist: Classical Artist 3
+  year: 2000-12-03
+
+
+
+
