@@ -15,10 +15,10 @@
       <div class="errorMessage" ><%= notice %></div>
 
 
-      <%= simple_form_for @user do |f| %> 
-        <%= f.input :username %> 
-        <%= f.input :password %>
-        <%= f.input :password_confirmation %>
+      <%= simple_form_for @user, :html=> { class: 'InputJQuery' }  do |f| %> 
+          <%= f.input :username %> 
+          <%= f.input :password %>
+          <%= f.input :password_confirmation %>
         <%= f.button :submit, 'Register', :class => "btn btn-default btn-light" %> 
 
       <% end %>

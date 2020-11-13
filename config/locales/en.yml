@@ -31,9 +31,9 @@
 
 en:
   app_title: Music Collection
-  app_description: A place where you can keep a collection of all your songs
+  app_description: A place where you can keep collections of all your songs in albums and also favourite albums
 
   home:
     home:
-      title: My Notes
-      welcome: Welcome to my notes site!
+      title: Music Collection
+      welcome: A place where you can keep collections of all your songs in albums and also favourite albums

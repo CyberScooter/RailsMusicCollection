@@ -1,6 +1,7 @@
 
 $(function() {
     
+    //if scrolling on windows and top scroll height is over 40 then display the scroll
 	$(window).on('scroll', function(){
         if(window.matchMedia('(max-width: 767px)').matches){
             if($(this).scrollTop() <= 160){
@@ -16,5 +17,15 @@ $(function() {
             } 
         }
 		
-	});
+    });
+    
+
+    // after input is touched and if empty then display red outline
+    $('.InputJQuery input').on("click", function(){
+        if($(this).val().length == 0){
+            $(this).addClass("error");
+        } else{
+            $(this).removeClass("error");
+        }
+    });
 })

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: session_params["name"])
+    @user = User.find_by(username: session_params["username"])
 
     if(current_user)
       redirect_to root_url, notice: "Session already active"
@@ -30,6 +30,6 @@ class SessionsController < ApplicationController
 
   private
   def session_params
-    params.require(login_path).permit(:name, :password)
+    params.require(login_path).permit(:username, :password)
   end
 end

@@ -5,10 +5,12 @@
 
     <div class="errorMessage" ><%= notice %></div>
 
-    <%= simple_form_for @contact do |f| %>
-      <%= f.input :name %>
-      <%= f.input :email %>
-      <%= f.input :message %> 
+    <%= simple_form_for @contact do |f|%>
+      <span class="InputJQuery">
+        <%= f.input :name %>
+        <%= f.input :email %>
+        <%= f.input :message %> 
+      </span>
       <%= f.button :submit, 'Send message', class:"btn btn-default btn-light" %>
      
     <% end %>

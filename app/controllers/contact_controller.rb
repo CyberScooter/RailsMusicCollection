@@ -1,24 +1,15 @@
-class ContactController < ApplicationController#
-
-
+class ContactController < ApplicationController
   def new
-
     @contact = Contact.new
   end
 
   def create
-    @contact = Contact.new(contact_params)
-
     #testing purposes will be changed
     #checks against 'contact' model validations
-    if (@contact.save)
-      redirect_to contact_url, notice: 'Message has been successfully sent'
-    end
-   
+  
+    ContactMailer.contact_email(contact_params[:name], contact_params[:email], contact_params[:message]).deliver_now
+    redirect_to contact_path, notice: 'Message successfully sent'
 
-    
-    
-    
   end
 
   private

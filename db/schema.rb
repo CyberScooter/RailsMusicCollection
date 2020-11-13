@@ -33,12 +33,6 @@ ActiveRecord::Schema.define(version: 2020_11_07_153825) do
     t.index ["user_id"], name: "index_albums_users_on_user_id"
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "message"
-  end
-
   create_table "favourites", force: :cascade do |t|
     t.integer "album_id"
     t.integer "user_id"

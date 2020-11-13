@@ -23,21 +23,6 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to song_url(Song.last)
   end
 
-  test "should show song" do
-    get song_url(@song)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_song_url(@song)
-    assert_response :success
-  end
-
-  test "should update song" do
-    patch song_url(@song), params: { song: { artist: @song.artist, name: @song.name, year: @song.year } }
-    assert_redirected_to song_url(@song)
-  end
-
   test "should destroy song" do
     assert_difference('Song.count', -1) do
       delete song_url(@song)
