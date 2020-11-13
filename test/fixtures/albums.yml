@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
+  id: 1
+  name: Party Hits!
+  description: Classic top hits!
 
 two:
+  id: 2
   name: MyString
   description: MyString

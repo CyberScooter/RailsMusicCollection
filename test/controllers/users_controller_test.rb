@@ -16,7 +16,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  #user should be able to logout because they're logged in automatically after successful registration above
+  #user is automatically logged in after successful registration so logout should work
   test "should logout" do 
     get logout_url
 

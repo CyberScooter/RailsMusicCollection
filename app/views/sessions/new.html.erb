@@ -14,7 +14,7 @@
 
       <div class="errorMessage" ><%= notice %></div>
 
-      <%= simple_form_for login_path do |f| %>
+      <%= simple_form_for @session, :url => login_url do |f| %>
         <%= f.input :username %> 
         <%= f.input :password %> 
         <%= f.button :submit, 'Login', :class => "btn btn-default btn-light"  %>

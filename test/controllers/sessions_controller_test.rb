@@ -7,16 +7,37 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should login" do
-    assert_difference('User.count') do
-      post login_url, params: { login: {username: 'Test', password: 'Test123'}}
+    #uses fixture users.yml details 
+    assert_no_difference('User.count') do
+      post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
     end
 
-    assert_equal "User has been successfully registered", flash[:notice]
+    assert_equal "Successfully logged in", flash[:notice]
     assert_redirected_to root_url
   end
 
+  #login a user that is not in the database
   test "should try login invalid user" do
+    #uses fixture users.yml details 
+    assert_no_difference('User.count') do
+      post login_url, params: { session: {username: 'UserThatDoesNotExist', password: 'UserThatDoesNotExist123'}}
+    end
 
+    assert_equal "Invalid user", flash[:notice]
+    assert_redirected_to login_url
+  end
+
+  #login to a user then logout
+  test "should logout" do 
+    #uses fixture users.yml details 
+    assert_no_difference('User.count') do
+      post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
+    end
+
+    get logout_url
+
+    assert_equal "Successfully logged out", flash[:notice]
+    assert_redirected_to root_url
   end
 
 end

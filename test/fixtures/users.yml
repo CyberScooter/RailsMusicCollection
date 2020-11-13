@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: MyString
-  password_digest: MyString
+  username: AnExistingUser
+  #BCrypt password generator used in order to store the hash
+  password_digest: <%= BCrypt::Password.create("AnExistingUser123", cost: 4) %>
 
-two:
-  username: MyString
-  password_digest: MyString

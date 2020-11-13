@@ -67,10 +67,10 @@ class AlbumsController < ApplicationController
       end
       
       #deletes album from the table
-      @album.destroy
-      respond_to do |format|
-        format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-        format.json { head :no_content }
+      if @album.destroy 
+        redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+      else 
+        redirect_to albums_url, notice: @album.errors
       end
     end
   end

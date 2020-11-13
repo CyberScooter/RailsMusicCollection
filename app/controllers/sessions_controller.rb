@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    @session = Session.new
   end
 
   def create
@@ -30,6 +31,7 @@ class SessionsController < ApplicationController
 
   private
   def session_params
-    params.require(login_path).permit(:username, :password)
+    #login_url
+    params.require(:session).permit(:username, :password)
   end
 end
