@@ -7,8 +7,11 @@ class ContactController < ApplicationController
     #testing purposes will be changed
     #checks against 'contact' model validations
   
-    ContactMailer.contact_email(contact_params[:name], contact_params[:email], contact_params[:message]).deliver_now
-    redirect_to contact_path, notice: 'Message successfully sent'
+    if ContactMailer.contact_email(contact_params[:name], contact_params[:email], contact_params[:message]).deliver_now
+      redirect_to contact_path, notice: 'Message successfully sent'
+    else
+      redirect_to contact_path, notice: 'Message not successfully sent'
+    end
 
   end
 

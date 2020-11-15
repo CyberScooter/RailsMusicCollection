@@ -21,8 +21,8 @@
           <div class="thumbnail">
             <!-- <img src="..." alt="..."> -->
             <div class="caption">
-              <h3><td><%= album.name %></td></h3>
-              <td><%= album.description %></td>
+              <h3 class="favouriteName"><td><%= album.name %></td></h3>
+              <td class="favouriteDescription"><%= album.description %></td>
               <p>
                 <!-- maybe use post form to submit id to songs controller-->
                 <%= link_to 'View', songs_path(album), class: "btn btn-primary" %>

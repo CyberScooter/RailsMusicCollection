@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   #blocks access to albums manipulatin if not logged in
-  before_action :authorized, only: [:edit, :new, :create, :update, :destroy]
+  before_action :authorized, only: [:index, :edit, :new, :create, :update, :destroy]
 
   # GET /albums
   # GET /albums.json
@@ -68,7 +68,7 @@ class AlbumsController < ApplicationController
       
       #deletes album from the table
       if @album.destroy 
-        redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+        redirect_to albums_url, notice: 'Album was successfully destroyed.' 
       else 
         redirect_to albums_url, notice: @album.errors
       end

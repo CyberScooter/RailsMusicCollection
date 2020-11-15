@@ -7,12 +7,14 @@ class FavouritesController < ApplicationController
     end
 
     def destroy 
-        @favourite = Favourite.find_by(album_id: params[:id])
 
-        @favourite.destroy
-        respond_to do |format|
-          format.html { redirect_to favourites_url, notice: 'Album has been removed from favourites.' }
-          format.json { head :no_content }
+        # favourite belongs to user is checked in this below
+        @favourite = Favourite.find_by(album_id: params[:id], user_id: current_user.id)
+
+        if @favourite.destroy
+          redirect_to favourites_url, notice: 'Album has been removed from favourites.'
+        else 
+          redirect_to favourites_url, notice: 'Could not remove album'
         end
     end
 
@@ -21,17 +23,11 @@ class FavouritesController < ApplicationController
         @favourite = Favourite.create(user: current_user, album: album)
     
         if @favourite.save
-          respond_to do |format|
-          format.html { redirect_to favourites_url, notice: 'Album has been favorited' }
-          format.json { render :index, status: :created, location: @album }
-          end
+          redirect_to favourites_url, notice: 'Album has been favorited' 
         else
-          respond_to do |format|
-          format.html { redirect_to favourites_url }
-          format.json { render json: @album.errors, status: :unprocessable_entity }
-          end
+          redirect_to favourites_urlm notice: 'Error has occurred' 
         end
-      end
+    end
 
 
 end

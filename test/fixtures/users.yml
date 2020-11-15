@@ -6,3 +6,9 @@ one:
   #BCrypt password generator used in order to store the hash
   password_digest: <%= BCrypt::Password.create("AnExistingUser123", cost: 4) %>
 
+two:
+  id: 2
+  username: SomeOtherUser
+  #BCrypt password generator used in order to store the hash
+  password_digest: <%= BCrypt::Password.create("SomeOtherUser123", cost: 4) %>
+
