@@ -59,28 +59,27 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
   end
 
 #===========================================================================================================
-#additional tests below make sure that user is logged in to manipulate a song
+#additional tests below make sure that if the user is not logged in/no active user session they cannot create and destroy songs
 
   test "should not create song" do
-    #no album found error is given as user doesnt have rights to the album
-    assert_raises(NoMethodError) do
-
-      assert_no_difference('Song.count') do
-        post songs_url(@album), params: { song: { artist: "TestSongArtistToAdd", name: "TestSongNameToAdd", year: "2011-01-23" } }
-      end
-
+    #no difference in the songs db tables
+    assert_no_difference('Song.count') do
+      post songs_url(@album), params: { song: { artist: "TestSongArtistToAdd", name: "TestSongNameToAdd", year: "2011-01-23" } }
     end
+
+    #redirect to root url which is what the "authorized" method in application controller should do
+    assert_redirected_to root_url
 
   end
 
   test "should not destroy song" do
-    #no album found error is given as user doesnt have rights to the album
-    assert_raises(NoMethodError) do
-
-      assert_difference('Song.count', 0) do
-        delete song_url(@song.id, @song)
-      end
+    #no difference in the songs db tables
+    assert_no_difference('Song.count') do
+      delete song_url(@song.id, @song)
     end
+
+    #redirect to root url which is what the "authorized" method in application controller should do
+    assert_redirected_to root_url
 
   end
 

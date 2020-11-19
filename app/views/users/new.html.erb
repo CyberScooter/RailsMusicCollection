@@ -12,6 +12,19 @@
 
       <h2> Register </h2>
 
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited the details from being registered:</h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
       <div class="errorMessage" ><%= notice %></div>
 
 

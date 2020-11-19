@@ -3,8 +3,21 @@
 
     <h3> Contact </h3>
 
-    <div class="errorMessage" ><%= notice %></div>
 
+    <% if @contact.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this message from being sent:</h2>
+
+        <ul>
+        <% @contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="errorMessage" ><%= notice %></div>
+    
     <%= simple_form_for @contact do |f|%>
       <span class="InputJQuery">
         <%= f.input :name %>
@@ -15,6 +28,6 @@
      
     <% end %>
 
-      <Button id="Home" class="btn btn-default btn-light"> <%= link_to("Home", "/") %> </Button>
+    <%= link_to("Home", "/", class:"btn btn-default btn-light") %>
   </div>
 </div>

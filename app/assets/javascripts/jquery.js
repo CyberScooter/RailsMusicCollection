@@ -21,7 +21,7 @@ $(function() {
     
 
     // after input is touched and if empty then display red outline
-    $('.InputJQuery input').on("click", function(){
+    $('.InputJQuery input').on("blur", function(){
         if($(this).val().length == 0){
             $(this).addClass("error");
         } else{

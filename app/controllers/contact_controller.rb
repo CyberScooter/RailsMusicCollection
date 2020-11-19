@@ -4,13 +4,19 @@ class ContactController < ApplicationController
   end
 
   def create
-    #testing purposes will be changed
-    #checks against 'contact' model validations
-  
-    if ContactMailer.contact_email(contact_params[:name], contact_params[:email], contact_params[:message]).deliver_now
-      redirect_to contact_path, notice: 'Message successfully sent'
+    #creates @contact with params to check against the model validations
+    @contact = Contact.new(email: contact_params[:email], name: contact_params[:name], message: contact_params[:message])
+
+
+    #@contact is used to check if model validations are correct
+    if @contact.valid?
+      if ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
+        redirect_to contact_path, notice: 'Message successfully sent'
+      else
+        redirect_to contact_path, notice: "Something went wrong, try again later"
+      end
     else
-      redirect_to contact_path, notice: 'Message not successfully sent'
+      render :new
     end
 
   end

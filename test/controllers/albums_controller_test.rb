@@ -89,7 +89,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   
 
   #==============================================================================================================================================
-  #additional tests below make sure that user is logged in to manipulate an album, redirects to home page if not logged in
+  #additional tests below make sure that if the user is not logged in/no active user session they cannot edit, update or destroy albums
   test "should not get edit" do
     get edit_album_url(@album)
     assert_redirected_to root_url
@@ -115,7 +115,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   #these additional tests below makes sure that another logged in user cannot delete or edit an album NOT belonging to them
   
   test "should not update album for different user" do
-    #user below has access to none of the dummy data albums in the database
+    #logging into a user that has access to none of the dummy data albums in the database
     post login_url, params: { session: {username: 'SomeOtherUser', password: 'SomeOtherUser123'}}
 
     assert_raises(ActiveRecord::RecordNotFound) do

@@ -1,10 +1,10 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
-  #blocks access to albums manipulatin if not logged in
+
+  #blocks access to ALL albums routes if not logged by using the helper method in application controller created
+  #redirects to root url if not logged in
   before_action :authorized, only: [:index, :edit, :new, :create, :update, :destroy]
 
-  # GET /albums
-  # GET /albums.json
   def index
     if(current_user) 
       @albums = current_user.albums.all
@@ -21,6 +21,7 @@ class AlbumsController < ApplicationController
   end
 
   def create
+    #this creates an album belonging to the user logged in
     @album = current_user.albums.create(album_params)
 
 
@@ -36,7 +37,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    #checks if user updating the album owns the album so not any registered user can update it
+    #checks if the logged in user updating the album owns the album so not any random registered user can update it
     if(current_user.albums.find(@album.id))
       respond_to do |format|
         if @album.update(album_params)
@@ -53,15 +54,18 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
-    #checks if user deleting the album owns the album so not any registered user can delete it
+    #checks if user deleting the album owns the album so not any random registered user can delete it
     if(current_user.albums.find(@album.id))
       @favourite = Favourite.find_by(album_id: @album.id)
+
+
+      #BELOW DELETES SONGS AND FAVOURITES BEFORE DELETING ALBUM FOR REFERENTIAL INTEGRITY
 
       #deletes songs from songs table for the given album id
       @song = Song.joins(:albums).select('songs.id').where('albums.id' => @album.id)
       @song.destroy_all
 
-      #deletes album reference in favourites before deleting the album 
+      #deletes album reference in favourites before deleting the album
       if @favourite
         @favourite.destroy
       end
