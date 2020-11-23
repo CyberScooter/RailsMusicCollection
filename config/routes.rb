@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   resources :albums
 
-  #songs to be nested ontop of albums so songs is after albums in url
+  #songs to be nested ontop of albums, so songs is after albums in url
   resources :songs, :path => "/albums/:album_id/songs", :except => [:show, :edit, :update]
 
   #map contacts to contact, restricts to create and new

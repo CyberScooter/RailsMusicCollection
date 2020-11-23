@@ -44,11 +44,6 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should show album" do
-    get album_url(@album)
-    assert_response :success
-  end
-
   test "should get edit" do
     #needs authentication to edit an album, so statement below logs user into an account
     post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}

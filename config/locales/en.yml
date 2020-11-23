@@ -32,8 +32,7 @@
 en:
   app_title: Music Collection
   app_description: A place where you can keep collections of all your songs in albums and also favourite albums
-
   home:
-    home:
-      title: Music Collection
-      welcome: A place where you can keep collections of all your songs in albums and also favourite albums
+    title: Welcome to the Music collection website!
+    welcome: A place where you can keep collections of all your songs in albums and also favourite albums
+    introduction: To start storing and favoriting music collections register or login above! 

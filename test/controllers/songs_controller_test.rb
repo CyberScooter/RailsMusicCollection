@@ -99,7 +99,7 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
     post login_url, params: { session: {username: 'SomeOtherUser', password: 'SomeOtherUser123'}}
     assert_raises(ActiveRecord::RecordNotFound) do
 
-      assert_difference('Song.count', 0) do
+      assert_no_difference('Song.count') do
         delete song_url(@song.id, @song)
       end
     end

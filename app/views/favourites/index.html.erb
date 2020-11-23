@@ -26,8 +26,7 @@
               <p>
                 <!-- maybe use post form to submit id to songs controller-->
                 <%= link_to 'View', songs_path(album), class: "btn btn-primary" %>
-                <%= link_to 'Remove', "/favourites/"+album.id.to_s, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-
+                <%= link_to 'Remove', "/favourites/"+album.id.to_s, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%>
               </p>
             </div>
           </div>
