@@ -20,7 +20,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   #trying to register a user that already exists, session is NOT created and user is redirected to register url
-  test "should not register" do
+  test "should not register if user exists" do
     assert_no_difference('User.count') do
       post register_url, params: { user: { username: 'AnExistingUser', password: 'AnExistingUser123', password_confirmation: 'AnExistingUser123' } }
     end
@@ -35,6 +35,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal "Please login", flash[:notice]
     assert_redirected_to login_url
+  end
+
+  #testing views
+  test "should not display register form if logged in" do
+    #logs user into account
+    post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
+
+    get register_url
+    
+    assert_select '.activeSession', "Session already active"
+
   end
 
 end

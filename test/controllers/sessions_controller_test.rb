@@ -44,4 +44,28 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+  #redirect to register page and display session already active, if user is trying to register whilst logged in
+  test "should not register if logged in" do
+    #logs user into account
+    post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
+
+    assert_no_difference('User.count') do
+      post register_url, params: { user: { username: 'Test', password: 'Test12345', password_confirmation: 'Test12345' } }
+    end
+
+    assert_redirected_to root_url
+
+  end
+
+  #testing views
+  test "should not display login form if logged in" do
+    #logs user into account
+    post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
+
+    get login_url
+    
+    assert_select '.activeSession', "Session already active"
+
+  end
+
 end
