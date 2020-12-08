@@ -22,10 +22,10 @@
     <div class="container-fluid">
       <div>
         <ul class="nav navbar-nav">
-          <li id="homeLink"><a href="/">Home </a></li>
+          <li id="homeLink" class="<%= 'active' if current_page?(root_path) %>"><a href="/">Home </a></li>
           <% if current_user %>
-          <li><a href="<%= albums_path %>">Albums</a></li>
-          <li><a href="<%= favourites_path%>">Favourites </a></li>
+          <li class="<%= 'active' if current_page?('/albums') %>"><a href="<%= albums_path %>">Albums</a></li>
+          <li class="<%= 'active' if current_page?('/favourites') %>"><a href="<%= favourites_path%>">Favourites </a></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
