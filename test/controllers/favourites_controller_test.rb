@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class FavouritesControllerTest < ActionDispatch::IntegrationTest
+  # tests below check whether album is favourited correctly for a given user
   setup do
     @song = songs(:one)
     @album = albums(:one)
@@ -21,14 +22,29 @@ class FavouritesControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should add favourite album" do
+  test "should favourite album" do
     post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
 
     assert_difference("Favourite.count", 1) do
       post favourites_path(:album_id => @albumToAdd.id)
     end
 
-    assert_equal 'Album has been favorited', flash[:notice]
+    assert_equal 'Album has been favourited', flash[:notice]
+    assert_redirected_to favourites_url
+
+  end
+
+  test "should not favourite existing favourite album" do
+    post login_url, params: { session: {username: 'AnExistingUser', password: 'AnExistingUser123'}}
+
+    assert_difference("Favourite.count", 1) do
+      # line below favourite the album
+      post favourites_path(:album_id => @albumToAdd.id)
+      # trying to favourite the existing album again should not favourited but redirected instead
+      post favourites_path(:album_id => @albumToAdd.id)
+    end
+
+    assert_equal 'The album has already been favourited', flash[:notice]
     assert_redirected_to favourites_url
 
   end
@@ -53,7 +69,7 @@ class FavouritesControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "should not add favourite album" do
+  test "should not favourite album" do
     assert_no_difference("Favourite.count") do
       post favourites_path(:album_id => @albumToAdd.id)
     end

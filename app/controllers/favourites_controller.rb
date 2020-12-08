@@ -19,16 +19,24 @@ class FavouritesController < ApplicationController
   end
 
   def create 
+    foundFavourite = Favourite.find_by(album_id: params[:album_id], user_id: current_user.id)
+
+    # check if user logged in has already favourited album
+    if !foundFavourite
       #finds album id passed from album controller 
       album = Album.find(params[:album_id])
       #creates a link between the user logged in and the album inside of the favourites table using foreign keys
       @favourite = Favourite.create(user: current_user, album: album)
-  
+
       if @favourite.save
-        redirect_to favourites_url, notice: 'Album has been favorited' 
+        redirect_to favourites_url, notice: 'Album has been favourited' 
       else
-        redirect_to favourites_urlm notice: 'Error has occurred' 
+        redirect_to favourites_url, notice: 'Error has occurred' 
       end
+    else
+      redirect_to favourites_url, notice: 'The album has already been favourited'
+    end
+
   end
 
 
