@@ -13,7 +13,12 @@
             <% end %>
             </h1>
             <p> <%= t('home.welcome') %>  </p>
+            <% if !current_user %>
             <p> <%= t('home.introduction') %></p>
+            <% else %>
+            <p> <%= t('home.welcome-loggedin')%></p>
+            <% end %>
+            <h4>*Mobile compatibility included*</h4>
             <h4 style="color:red;margin-bottom:40px"> Scroll down and all the way up after to see JQuery navbar animation </h4>
             <p>-</p>
             <p>-</p>

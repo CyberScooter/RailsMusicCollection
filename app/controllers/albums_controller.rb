@@ -8,6 +8,10 @@ class AlbumsController < ApplicationController
   def index
     if(current_user) 
       @albums = current_user.albums.all
+      @albums.each do |album|
+        #if current user already has favourited this album then use this attribute to decide whether favourite button should be visible
+        album.favourites = !Favourite.find_by(album_id: album.id, user_id: current_user.id)
+      end
     end
     
   end

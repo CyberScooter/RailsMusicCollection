@@ -35,4 +35,5 @@ en:
   home:
     title: Welcome to the Music collection website!
     welcome: A place where you can keep collections of all your songs in albums and also favourite albums
+    welcome-loggedin: To start using the website click on albums on top left to add/view albums and songs, to view your favourites click on the favourites on top left
     introduction: To start storing and favoriting music collections register or login above! 
