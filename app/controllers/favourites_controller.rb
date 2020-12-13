@@ -12,9 +12,9 @@ class FavouritesController < ApplicationController
     @favourite = Favourite.find_by(album_id: params[:id], user_id: current_user.id)
 
     if @favourite.destroy
-      redirect_to favourites_url, notice: 'Album has been removed from favourites.'
+      redirect_to favourites_url, notice: I18n.t('favourites.deleted') 
     else 
-      redirect_to favourites_url, notice: 'Could not remove album'
+      redirect_to favourites_url, notice: I18n.t('favourites.delete-error') 
     end
   end
 
@@ -29,12 +29,12 @@ class FavouritesController < ApplicationController
       @favourite = Favourite.create(user: current_user, album: album)
 
       if @favourite.save
-        redirect_to favourites_url, notice: 'Album has been favourited' 
+        redirect_to favourites_url, notice: I18n.t('favourites.success') 
       else
-        redirect_to favourites_url, notice: 'Error has occurred' 
+        redirect_to favourites_url, notice: I18n.t('favourites.error') 
       end
     else
-      redirect_to favourites_url, notice: 'The album has already been favourited'
+      redirect_to favourites_url, notice: I18n.t('favourites.duplicate')
     end
 
   end

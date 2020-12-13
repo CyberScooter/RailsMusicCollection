@@ -1,12 +1,12 @@
 <div class="container">
   <div class="jumbotron">
 
-    <h3> Contact </h3>
+    <h3> <%= t('contact.title') %> </h3>
 
 
     <% if @contact.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this message from being sent:</h2>
+        <h2><%= pluralize(@contact.errors.count, "error") %> <%= t('contact.errors') %>:</h2>
 
         <ul>
         <% @contact.errors.full_messages.each do |message| %>

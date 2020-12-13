@@ -31,7 +31,7 @@ class SongsController < ApplicationController
 
       respond_to do |format|
         if @song.save
-          format.html { redirect_to songs_url, notice: 'Song was successfully created.' }
+          format.html { redirect_to songs_url, notice: I18n.t('songs.created') }
           format.json { render :show, status: :created, location: @song }
         else
           format.html { render :new }
@@ -39,7 +39,7 @@ class SongsController < ApplicationController
         end
       end
     else
-      redirect_to new_song_url, notice: 'Invalid operation, logged in as wrong user'
+      redirect_to new_song_url, notice: I18n.t('songs.invalid-operation')
     end
   end
 
@@ -50,7 +50,7 @@ class SongsController < ApplicationController
     if(current_user.albums.find(@song.albums.ids))
       @song.destroy
       respond_to do |format|
-        format.html { redirect_to albums_url, notice: 'Song was successfully deleted.' }
+        format.html { redirect_to albums_url, notice: I18n.t('songs.deleted') }
         format.json { head :no_content }
       end
     end

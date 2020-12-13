@@ -13,15 +13,15 @@ class SessionsController < ApplicationController
 
     #if a current session is active
     if(current_user)
-      redirect_to root_url, notice: "Session already active"
+      redirect_to root_url, notice: I18n.t('login.active-session')
     #else if user under the username exists AND the password they typed in matches from database for the given user
     elsif @user && @user.authenticate(session_params["password"])
        #set the session variable to the user id
        session[:user_id] = @user.id
-       redirect_to root_url, notice: "Successfully logged in"
+       redirect_to root_url, notice: I18n.t('login.success')
     else
       #error
-       redirect_to login_url, notice: "Invalid user"
+       redirect_to login_url, notice: I18n.t('login.invalid-user')
     end
   end
 
@@ -32,10 +32,10 @@ class SessionsController < ApplicationController
     if(current_user)
       #then delete the user session, also the only session used is for authentication
       reset_session
-      redirect_to root_url, notice: "Successfully logged out"
+      redirect_to root_url, notice: I18n.t('logout.success')
     else
       #else there is no user session so login to create one
-      redirect_to login_url, notice: "Please login"
+      redirect_to login_url, notice: I18n.t('logout.fail')
     end
   end
 

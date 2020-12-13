@@ -35,5 +35,45 @@ en:
   home:
     title: Welcome to the Music collection website!
     welcome: A place where you can keep collections of all your songs in albums and also favourite albums
+    welcome-loggedin-title1: Welcome
+    welcome-loggedin-title2: to the Music collection website!
     welcome-loggedin: To start using the website click on albums on top left to add/view albums and songs, to view your favourites click on the favourites on top left
-    introduction: To start storing and favoriting music collections register or login above! 
+    introduction: To start storing and favoriting music collections register or login above!
+  albums:
+    title: Albums
+    errors: prohibited this album from being saved
+    created: Album was successfully created.
+    updated: Album was successfully updated.
+    deleted: Album was successfully destroyed.
+    empty: Albums is currently empty, click on button below to add an album!
+  favourites:
+    title: Favourites
+    success: Album has been favourited
+    deleted: Album has been removed from favourites.
+    delete-error: Could not remove album
+    error: Error has occurred
+    duplicate: The album has already been favourited
+    empty: Favourites is currently empty, go into albums and favourite!
+  songs:
+    title: Songs
+    errors: prohibited this song from being saved
+    created: Song was successfully created.
+    deleted: Song was successfully deleted.
+    invalid-operation: Invalid operation, logged in as wrong user
+  contact:
+    title: Contact
+    success: Message successfully sent
+    error: Something went wrong, try again later
+    errors: prohibited this message from being sent
+  register:
+    active-session: Session already active
+    success: User has been successfully registered
+    password-mismatch: Password does not match
+    duplicate: Username already exists
+  login:
+    active-session: Session already active
+    success: Successfully logged in
+    invalid-user: Invalid user
+  logout: 
+    success: Successfully logged out
+    fail: Please login

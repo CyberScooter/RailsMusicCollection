@@ -11,9 +11,9 @@ class ContactController < ApplicationController
     #@contact is used to check if model validations are correct
     if @contact.valid?
       if ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
-        redirect_to contact_path, notice: 'Message successfully sent'
+        redirect_to contact_path, notice: I18n.t('contact.success') 
       else
-        redirect_to contact_path, notice: "Something went wrong, try again later"
+        redirect_to contact_path, notice: I18n.t('contact.error') 
       end
     else
       render :new

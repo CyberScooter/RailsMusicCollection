@@ -5,13 +5,10 @@
   <div class="jumbotron">
   <p id="notice"><%= notice %></p>
 
-
-  <% if current_user %>
-
   <% if @album.empty? %>
-  <h3> Favourites is currently empty, go into albums and favourite! </h3>
+  <h3> <%= t('favourites.empty') %></h3>
   <% else %>
-  <h3>Favourites:</h3>
+  <h3><%= t('favourites.title') %></h3>
   <br>
 
       <div class="row">
@@ -36,9 +33,5 @@
       </div>
   <% end %>
 
-
-  <% else %>
-  <h4> Login to view favourite albums </h4>
-  <% end %>
   </div>
 </div>

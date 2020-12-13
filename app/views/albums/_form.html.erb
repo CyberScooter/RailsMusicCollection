@@ -1,7 +1,7 @@
 <%= simple_form_for @album do |form| %>
   <% if @album.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+      <h2><%= pluralize(@album.errors.count, "error") %> <%= t('albums.errors') %>:</h2>
 
       <ul>
       <% @album.errors.full_messages.each do |message| %>

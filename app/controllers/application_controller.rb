@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
 
     def current_user
-        #used to retrieve active session to be used around the different controllers and views
+        #used to retrieve active session to be used around the different controllers
         if session[:user_id]
             User.find(session[:user_id])
         end

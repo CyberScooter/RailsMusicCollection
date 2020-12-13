@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     #If session is already active and user is trying to register
     if current_user
-      redirect_to root_url, notice: 'Session already active'
+      redirect_to root_url, notice: I18n.t('register.active-session')
     #else if username being registered cannot be found in the database
     elsif !User.find_by(username: user_params["username"])
       #if the password confirmation input matches the password input
@@ -21,16 +21,16 @@ class UsersController < ApplicationController
         if @user.save
           #set the session variable to the user id
           session[:user_id] = @user.id
-          redirect_to root_url, notice: 'User has been successfully registered'
+          redirect_to root_url, notice: I18n.t('register.success')
         else
           render :new
         end
       else
-        redirect_to users_url, notice: 'Password does not match'
+        redirect_to users_url, notice: I18n.t('register.password-mismatch')
         
       end
     else
-      redirect_to users_url, notice: 'Username already exists'
+      redirect_to users_url, notice: I18n.t('register.duplicate')
       
     end
 

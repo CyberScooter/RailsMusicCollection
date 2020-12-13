@@ -7,7 +7,7 @@
 <div class="container">
   <div class="jumbotron">
   <p id="notice"><%= notice %></p>
-  <h3>Songs</h3>
+  <h3><%= t('songs.title') %></h3>
   <%= link_to 'Add new Song', new_song_path, class:"btn btn-default" %>
     <div class="row">
       <% @songs.each do |song| %>

@@ -5,14 +5,11 @@
   <div class="jumbotron">
   <p id="notice"><%= notice %></p>
 
-
-  <% if current_user %>
-
   <% if @albums.empty? %>
-  <h3>Albums is currently empty, click on button below to add an album!</h3>
+  <h3><%= t('albums.empty') %></h3>
 
   <% else %>
-  <h3>Albums</h3>
+  <h3><%= t('albums.title') %></h3>
   <br>
 
       <div class="row">
@@ -42,8 +39,5 @@
 
   <%= link_to 'New Album', new_album_path,class:"btn btn-default" %>
 
-  <% else %>
-  <h4> Login to add new album </h4>
-  <% end %>
   </div>
 </div>
